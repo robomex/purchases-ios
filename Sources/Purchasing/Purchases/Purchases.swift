@@ -1199,7 +1199,7 @@ public extension Purchases {
      * ```swift
      *  Purchases.configure(
      *      with: Configuration.Builder(withAPIKey: Constants.apiKey)
-     *               .with(observerMode: false)
+     *               .with(observerMode: false, storeKitVersion: .storeKit1)
      *               .with(appUserID: "<app_user_id>")
      *               .build()
      *      )
@@ -1239,7 +1239,7 @@ public extension Purchases {
      * ```swift
      *  Purchases.configure(
      *      with: .init(withAPIKey: Constants.apiKey)
-     *               .with(observerMode: false)
+     *               .with(observerMode: false, storeKitVersion: .storeKit1)
      *               .with(appUserID: "<app_user_id>")
      *      )
      * ```
@@ -1326,7 +1326,6 @@ public extension Purchases {
      * - Returns: An instantiated ``Purchases`` object that has been set as a singleton.
      *
      * - Warning: This assumes your IAP implementation uses StoreKit 1.
-     * Observer mode is not compatible with StoreKit 2.
      */
     @_disfavoredOverload
     @objc(configureWithAPIKey:appUserID:observerMode:)
@@ -1337,7 +1336,7 @@ public extension Purchases {
             with: Configuration
                 .builder(withAPIKey: apiKey)
                 .with(appUserID: appUserID)
-                .with(observerMode: observerMode)
+                .with(observerMode: observerMode, storeKitVersion: .storeKit1)
                 .build()
         )
     }
