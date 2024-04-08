@@ -21,29 +21,23 @@ struct UpsellView: View {
         }
         .padding()
         .presentPaywallIfNeeded(
-            requiredEntitlementIdentifier: Configuration.entitlement,
-            purchaseStarted: {
+            requiredEntitlementIdentifier: Configuration.entitlement) { package in
                 print("Purchase started")
-            },
-            purchaseCompleted: { _ in
+            } purchaseCompleted: { customerInfo in
                 print("Purchase completed")
-            },
-            purchaseCancelled: {
+            } purchaseCancelled: {
                 print("Purchase cancelled")
-            },
-            onDismiss: {
-                print("Paywall dismissed")
-            },
-            onRestoreCompleted: { _ in
-                print("Restore completed")
-            },
-            onRestoreStarted: {
+            } restoreStarted: {
                 print("Restore started")
-            },
-            onRestoreFailure: {
+            } restoreCompleted: { customerInfo in
+                print("Restore completed")
+            } purchaseFailure: { error in
+                print("Purchase failed")
+            } restoreFailure: { error in
                 print("Restore failed")
+            } onDismiss: {
+                print("Paywall dismissed")
             }
-        )
     }
 
 }
