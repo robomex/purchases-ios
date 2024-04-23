@@ -639,7 +639,7 @@ class StoreKit1IntegrationTests: BaseStoreKitIntegrationTests {
         }
 
         // 1. Subscribe
-        let customerInfo = try await self.purchaseMonthlyOffering().customerInfo
+        let customerInfo = try await self.purchaseShortestDuration().customerInfo
         let entitlement = try XCTUnwrap(customerInfo.entitlements[Self.entitlementIdentifier])
 
         // 2. Simulate closing app
