@@ -378,7 +378,15 @@ extension PaywallData.Configuration {
             accent3: PaywallColor? = nil,
             closeButton: PaywallColor? = nil
         ) {
+            #if os(visionOS)
+            do {
+                self.background = try PaywallColor(stringRepresentation: "#ff000000")
+            } catch {
+                self.background = background
+            }
+            #else
             self.background = background
+            #endif
             self.text1 = text1
             self.text2 = text2
             self.text3 = text3
